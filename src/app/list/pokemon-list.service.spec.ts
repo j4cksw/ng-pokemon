@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { PokemonListService } from './pokemon-list.service';
 import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
 
 describe('PokemonListService', () => {
   let service: PokemonListService;
@@ -14,8 +15,25 @@ describe('PokemonListService', () => {
     service = TestBed.inject(PokemonListService);
   });
 
+  it('should transform response from API to list of ListItemModel', () => {
+    httpClientSpy.get.and.returnValue(
+      of({
+        results: [
+          {
+            name: 'bulbasaur',
+            url: 'https://pokeapi.co/api/v2/pokemon/1/',
+          },
+          {
+            name: 'ivysaur',
+            url: 'https://pokeapi.co/api/v2/pokemon/2/',
+          },
+        ],
+      })
+    );
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+    service.get().subscribe((data) => {
+      expect(data.length).toBe(2);
+      expect(data[0]).toEqual({ name: 'bulbasaur', id: 1});
+    });
   });
 });

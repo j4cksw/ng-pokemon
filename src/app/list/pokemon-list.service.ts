@@ -12,13 +12,13 @@ export class PokemonListService {
 
   get(): Observable<ListItemModel[]> {
     return this.httpClient.
-    get<PokemonListResponse>('https://pokeapi.co/api/v2/pokemon?limit=151')
+    get('https://pokeapi.co/api/v2/pokemon?limit=151')
     .pipe(
-      map<PokemonListResponse, ListItemModel[]>((response) => {
+      map<any, ListItemModel[]>((response) => {
         return response.results.map((result: any) => {
           return {
             name: result.name,
-            id: result.url.split('/')[6]
+            id: Number(result.url.split('/')[6])
           }
         })
       })
