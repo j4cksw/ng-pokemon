@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailsModel } from './details.model';
+import { PokemonDetailsService } from '../pokemon-details.service';
 
 @Component({
   selector: 'app-details',
@@ -17,9 +18,13 @@ export class DetailsComponent {
     weight: 999
   }
 
-  constructor(private router: ActivatedRoute){}
+  constructor(private router: ActivatedRoute, private detailsService: PokemonDetailsService){}
 
   ngOnInit() {
     this.id = Number(this.router.snapshot.paramMap.get('id')) ?? 0;
+
+    this.detailsService.getById(this.id).subscribe((data)=>{
+      this.detailsModel = data;
+    })
   }
 }
