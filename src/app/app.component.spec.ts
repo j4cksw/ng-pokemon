@@ -1,29 +1,52 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { Router, Routes } from '@angular/router';
+import { ListComponent } from './list/list.component';
+import { DetailsComponent } from './details/details.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+  let router: Router;
+  let fixture: ComponentFixture<AppComponent>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  const routes: Routes = [
+    { path: '', component: ListComponent },
+    { path: 'details', component: DetailsComponent }
+  ];
 
-  it(`should have as title 'ng-pokemon'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ng-pokemon');
-  });
+  beforeEach(async () => {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes(routes),
+        HttpClientModule,
+      ],
+      declarations: [AppComponent, ListComponent, DetailsComponent],
+    }).compileComponents();
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    router = TestBed.inject(Router);
+    router.initialNavigation();
+
+    fixture = TestBed.createComponent(AppComponent);
+    await fixture.whenStable();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ng-pokemon app is running!');
+  });
+
+  it('should render list page', async () => {
+    router.navigate(['/']);
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    // List component not null ot undefined or false
+    expect(fixture.nativeElement.querySelector('app-list')).toBeTruthy();
+  });
+
+  it('should render details page', async () => {
+    router.navigate(['/details']);
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    // Details component not null ot undefined or false
+    expect(fixture.nativeElement.querySelector('app-details')).toBeTruthy();
   });
 });
