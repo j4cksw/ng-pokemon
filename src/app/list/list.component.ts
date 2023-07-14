@@ -19,6 +19,7 @@ export class ListComponent {
   }
 
   onTextInput(event: Event) {
-    console.log(event);
+    let keyword = (event.target as HTMLInputElement).value;
+    this.listItems = this.pokemonListService.filter(keyword);
   }
 }
