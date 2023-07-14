@@ -36,4 +36,27 @@ describe('PokemonListService', () => {
       expect(data[0]).toEqual({ name: 'bulbasaur', id: 1});
     });
   });
+
+  it('should filter list by given keyword', () => {
+    httpClientSpy.get.and.returnValue(
+      of({
+        results: [
+          {
+            name: 'bulbasaur',
+            url: 'https://pokeapi.co/api/v2/pokemon/1/',
+          },
+          {
+            name: 'ivysaur',
+            url: 'https://pokeapi.co/api/v2/pokemon/2/',
+          },
+        ],
+      })
+    );
+
+    service.get().subscribe((data) => {
+      let filterResult = service.filter('bulbasaur');
+      expect(filterResult.length).toEqual(1);
+      expect(filterResult[0]).toEqual({ name: 'bulbasaur', id: 1})
+    });
+  })
 });
