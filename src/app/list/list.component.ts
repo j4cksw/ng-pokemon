@@ -17,4 +17,8 @@ export class ListComponent {
       this.listItems = data
     });
   }
+
+  onTextInput(event: Event) {
+    console.log(event);
+  }
 }
