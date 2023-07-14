@@ -6,7 +6,7 @@
                     <i class="bi bi-search"></i>
                 </span>
             </div>
-            <input type="text" class="form-control" placeholder="Filter" aria-label="Username"
+            <input id="filter-input" type="text" class="form-control" placeholder="Filter" aria-label="Username"
                 (keyup)="onTextInput($event)"
             aria-describedby="basic-addon1">
         </div>
@@ -15,7 +15,7 @@
 <div class="row">
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let item of listItems">
-            <a [routerLink]="['/details', item.id]">{{ item.name }}</a>
+            <img src="{{ item.sprite }}"><a [routerLink]="['/details', item.id]" id="item_{{ item.id }}">{{ item.name }}</a>
         </li>
     </ul>
 </div>

@@ -33,7 +33,7 @@ describe('PokemonListService', () => {
 
     service.get().subscribe((data) => {
       expect(data.length).toBe(2);
-      expect(data[0]).toEqual({ name: 'bulbasaur', id: 1});
+      expect(data[0]).toEqual({ name: 'bulbasaur', id: 1, sprite: ''});
     });
   });
 
@@ -56,7 +56,7 @@ describe('PokemonListService', () => {
     service.get().subscribe((data) => {
       let filterResult = service.filter('bulbasaur');
       expect(filterResult.length).toEqual(1);
-      expect(filterResult[0]).toEqual({ name: 'bulbasaur', id: 1})
+      expect(filterResult[0]).toEqual({ name: 'bulbasaur', id: 1, sprite: ''})
     });
   })
 });

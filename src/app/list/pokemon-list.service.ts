@@ -18,9 +18,11 @@ export class PokemonListService {
     .pipe(
       map<any, ListItemModel[]>((response) => {
         return response.results.map((result: any) => {
+          const id = Number(result.url.split('/')[6]);
           return {
             name: result.name,
-            id: Number(result.url.split('/')[6])
+            id: id,
+            sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
           }
         })
       }),

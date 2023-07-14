@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1 (Python 3.11.3 on darwin)" generated="20230714 15:18:51.162" rpa="false" schemaversion="4">
+<suite id="s1" name="Pokemon" source="/Users/prayochrujira/workspace/workshop/angular_2023/run/ng-pokemon/robot/pokemon.robot">
+<test id="s1-t1" name="Open details page from the list" line="5">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>http://localhost:4200</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230714 15:18:51.280" level="INFO">Opening browser 'chrome' to base url 'http://localhost:4200'.</msg>
+<msg timestamp="20230714 15:18:51.281" level="INFO">Executing: /usr/local/lib/python3.11/site-packages/selenium/webdriver/common/macos/selenium-manager --browser chrome --output json</msg>
+<status status="PASS" starttime="20230714 15:18:51.280" endtime="20230714 15:18:53.388"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>id=item_1</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230714 15:18:53.388" endtime="20230714 15:18:53.611"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>id=item_1</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20230714 15:18:53.611" level="INFO">Clicking link 'id=item_1'.</msg>
+<status status="PASS" starttime="20230714 15:18:53.611" endtime="20230714 15:18:53.669"/>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<arg>types: grass,poison</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" starttime="20230714 15:18:53.669" endtime="20230714 15:18:53.891"/>
+</kw>
+<status status="PASS" starttime="20230714 15:18:51.279" endtime="20230714 15:18:53.891"/>
+</test>
+<status status="PASS" starttime="20230714 15:18:51.164" endtime="20230714 15:18:53.892"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Pokemon">Pokemon</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
