@@ -1,2 +1,17 @@
-<a routerLink="">Back</a>
-<p> This is details {{id}} </p>
+<div class="row">
+    <a routerLink="">Back</a>
+</div>
+<div class="row">
+    <p class="h2 text-center">{{ detailsModel.name }}</p>
+</div>
+<div class="row">
+    <div class="col-4">
+    <img class="img"
+    src="{{ detailsModel.image }}">
+    </div>
+</div>
+<div class="row">
+    <p class="text-center">types: {{ detailsModel.type }}</p>
+    <p class="text-center">weight: {{ detailsModel.weight }}</p>
+</div>
+
